@@ -5,8 +5,8 @@ const { Download } = require("../controllers/DownloadController");
 
 const router = Router();
 
-router.post("/sign", AdminSign);
-router.get("/candidates", AllCandidates);
-router.get("/download/:filename", Download);
+router.post("/api/sign", AdminSign);
+router.get("/api/candidates", AllCandidates);
+router.get("/api/download/:filename", Download);
 
 module.exports = router;
