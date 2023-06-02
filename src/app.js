@@ -5,10 +5,13 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const Application = require("./models/Application");
+const Cafe = require("./models/Cafe");
 const multer = require("multer");
 const path = require("path");
 
 const routes = require("./routes");
+const Dinner = require("./models/Dinner");
+const Bar = require("./models/Bar");
 
 dotenv.config();
 
@@ -33,34 +36,90 @@ mongoose
 const storage = multer.diskStorage({
   destination: './uploads', // Set the destination folder for uploaded files
   filename: (req, file, cb) => {
-    // Generate a unique filename by appending the current timestamp
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    const ext = path.extname(file.originalname);
-    cb(null, file.fieldname + '-' + uniqueSuffix + ext);
+    cb(null, file.originalname);
   },
 });
 
 const upload = multer({ storage });
 
-app.post('/api/submit', upload.single('file'), async (req, res) => {
-
+app.post('/submit', upload.single('file'), async (req, res) => {
   try{
     const { path } = req.file;
-    console.log("ENTER");
-    const current = await Application.findOne({ email: req.body.email });
-    if (current) {
-        res.send("Exists!");
-    } else {
-      const new_app = new Application({
-          path: path,
-          coverletter: req.body.coverletter,
-          email: req.body.email,
-          phone: req.body.phone,
-          authorize: req.body.authorize
-      });
-      await new_app.save();
-      res.send("Success!");
-    }
+    const new_app = new Application({
+        path: path,
+        coverletter: req.body.coverletter,
+        email: req.body.email,
+        phone: req.body.phone,
+        authorize: req.body.authorize
+    });
+    await new_app.save();
+    res.send("Success!");
+  } catch (error) {
+    throw error;
+  }
+});
+
+const cafeStorage = multer.diskStorage({
+  destination: "uploads/cafe",
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const cafeUpload = multer({ storage: cafeStorage });
+
+app.post('/cafeImageUpload', cafeUpload.single('image'), async (req, res) => {
+  try{
+    const { path } = req.file;
+    console.log(req.file);
+    const new_app = new Cafe({
+        path: path,
+    });
+    await new_app.save();
+    res.send("Success!");
+  } catch (error) {
+    throw error;
+  }
+});
+
+const dinnerStorage = multer.diskStorage({
+  destination: "uploads/dinner",
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const dinnerUpload = multer({ storage: dinnerStorage });
+
+app.post('/dinnerImageUpload', dinnerUpload.single('image'), async (req, res) => {
+  try{
+    const { path } = req.file;
+    console.log(req.file);
+    const new_app = new Dinner({
+        path: path,
+    });
+    await new_app.save();
+    res.send("Success!");
+  } catch (error) {
+    throw error;
+  }
+});
+
+const barStorage = multer.diskStorage({
+  destination: "uploads/bar",
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const barUpload = multer({ storage: barStorage });
+
+app.post('/barImageUpload', barUpload.single('image'), async (req, res) => {
+  try{
+    const { path } = req.file;
+    console.log(req.file);
+    const new_app = new Bar({
+        path: path,
+    });
+    await new_app.save();
+    res.send("Success!");
   } catch (error) {
     throw error;
   }
