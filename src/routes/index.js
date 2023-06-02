@@ -11,21 +11,21 @@ const { AllBarImages, BarImageDelete } = require("../controllers/BarController")
 
 const router = Router();
 
-router.post("/sign", AdminSign);
-router.post("/signup", AdminSignUp)
-router.get("/candidates", AllCandidates);
-router.get("/download/:filename", Download);
-router.get("/jobs", Jobs);
-router.post("/newJob", newJob);
-router.post("/deleteJob", deleteJob);
-router.get("/faqs", Faqs);
-router.post("/newFaq", newFaq);
-router.post("/deleteFaq", deleteFaq);
-router.get("/cafe/images", AllCafeImages);
-router.post("/cafe/imageDelete", CafeImageDelete);
-router.get("/dinner/images", AllDinnerImages);
-router.post("/dinner/imageDelete", DinnerImageDelete);
-router.get("/bar/images", AllBarImages);
-router.post("/bar/imageDelete", BarImageDelete);
+router.post("/api/sign", AdminSign);
+router.post("/api/signup", AdminSignUp)
+router.get("/api/candidates", AllCandidates);
+router.get("/api/download/:filename", Download);
+router.get("/api/jobs", Jobs);
+router.post("/api/newJob", newJob);
+router.post("/api/deleteJob", deleteJob);
+router.get("/api/faqs", Faqs);
+router.post("/api/newFaq", newFaq);
+router.post("/api/deleteFaq", deleteFaq);
+router.get("/api/cafe/images", AllCafeImages);
+router.post("/api/cafe/imageDelete", CafeImageDelete);
+router.get("/api/dinner/images", AllDinnerImages);
+router.post("/api/dinner/imageDelete", DinnerImageDelete);
+router.get("/api/bar/images", AllBarImages);
+router.post("/api/bar/imageDelete", BarImageDelete);
 
 module.exports = router;

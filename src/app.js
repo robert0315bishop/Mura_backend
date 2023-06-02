@@ -42,7 +42,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-app.post('/submit', upload.single('file'), async (req, res) => {
+app.post('/api/submit', upload.single('file'), async (req, res) => {
   try{
     const { path } = req.file;
     const new_app = new Application({
@@ -67,7 +67,7 @@ const cafeStorage = multer.diskStorage({
 });
 const cafeUpload = multer({ storage: cafeStorage });
 
-app.post('/cafeImageUpload', cafeUpload.single('image'), async (req, res) => {
+app.post('/api/cafeImageUpload', cafeUpload.single('image'), async (req, res) => {
   try{
     const { path } = req.file;
     console.log(req.file);
@@ -89,7 +89,7 @@ const dinnerStorage = multer.diskStorage({
 });
 const dinnerUpload = multer({ storage: dinnerStorage });
 
-app.post('/dinnerImageUpload', dinnerUpload.single('image'), async (req, res) => {
+app.post('/api/dinnerImageUpload', dinnerUpload.single('image'), async (req, res) => {
   try{
     const { path } = req.file;
     console.log(req.file);
@@ -111,7 +111,7 @@ const barStorage = multer.diskStorage({
 });
 const barUpload = multer({ storage: barStorage });
 
-app.post('/barImageUpload', barUpload.single('image'), async (req, res) => {
+app.post('/api/barImageUpload', barUpload.single('image'), async (req, res) => {
   try{
     const { path } = req.file;
     console.log(req.file);
