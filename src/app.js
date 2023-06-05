@@ -45,12 +45,12 @@ const upload = multer({ storage });
 app.post('/api/submit', upload.single('file'), async (req, res) => {
   try{
     const { path } = req.file;
-    const new_app = new Application({
+    const new_app = new Career({
         path: path,
-        coverletter: req.body.coverletter,
+        name: req.body.name,
         email: req.body.email,
         phone: req.body.phone,
-        authorize: req.body.authorize
+        position: req.body.position
     });
     await new_app.save();
     res.send("Success!");
