@@ -12,6 +12,7 @@ const path = require("path");
 const routes = require("./routes");
 const Dinner = require("./models/Dinner");
 const Bar = require("./models/Bar");
+const Career = require("./models/Career");
 
 dotenv.config();
 
